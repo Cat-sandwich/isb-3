@@ -1,0 +1,10 @@
+{
+    "src_text_file": "./DECRYPTED/text_file",
+    "encrypted_file": "./ENCRYPTED/encrypted_text",
+    "decrypted_file": "./DECRYPTED/decrypted_text",
+    "symmetric_key": "./ENCRYPTED/symmetric_key",
+    "symmetric_key_decrypted": "./DECRYPTED/symmetric_key_decrypted",
+    "public_key": "./ENCRYPTED/public.pem",
+    "private_key": "./ENCRYPTED/private.pem",
+    "size": "128"
+}

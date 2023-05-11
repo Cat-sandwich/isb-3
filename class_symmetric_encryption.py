@@ -1,15 +1,15 @@
-from path import settings
 
 from cryptography.hazmat.primitives.ciphers.algorithms import AES
 from cryptography.hazmat.primitives import padding
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 import random
 import os
+import logging
 
 
 class symmetric_encryption:
 
-    def __init__(self, size: int, decrypt_file: str, encrypt_file: str, symmetric_key_file: str = settings["symmetric_key"]) -> None:
+    def __init__(self, size: int, symmetric_key_file: str, decrypt_file: str = None, encrypt_file: str = None) -> None:
 
         self.size = size
         self.sym_key_file = symmetric_key_file
@@ -18,20 +18,25 @@ class symmetric_encryption:
 
     def __add_to_file(self, symmetric_key: bytes) -> None:
         """сериализация ключа симмеричного алгоритма в файл"""
-        with open(self.sym_key_file, 'wb') as key_file:
-            key_file.write(bytes(symmetric_key.key))
+        try:
+            with open(self.sym_key_file, 'wb') as key_file:
+                key_file.write(bytes(symmetric_key.key))
+        except:
+            logging.error(f"Ошибка открытия файла: {self.sym_key_file}")
 
     def get_key(self) -> bytes:
         """десериализация ключа симметричного алгоритма"""
-        with open(self.sym_key_file, mode='rb') as key_file:
-            content = key_file.read()
-            return content
+        try:
+            with open(self.sym_key_file, mode='rb') as key_file:
+                content = key_file.read()
+                return content
+        except:
+            logging.error(f"Ошибка открытия файла: {self.sym_key_file}")
 
     def generate_key(self) -> None:
         """генерация ключа симметричного алгоритма шифрования"""
         key = os.urandom(self.size)
-        symmetric_key = AES(key)
-        self.__add_to_file(symmetric_key)
+        self.__add_to_file(key)
 
     def padding_data(self, data: str) -> bytes:
         """добавляем ничего не значащие данные к шифруемой информации"""
