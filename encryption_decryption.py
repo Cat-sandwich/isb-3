@@ -1,5 +1,5 @@
-from class_assymmetric_encryption import assymmetric_encryption
-from class_symmetric_encryption import symmetric_encryption
+from assymmetric_encryption import assymmetric_encryption
+from symmetric_encryption import symmetric_encryption
 
 
 def encrypt_data(decrypted_file: str, private_key: str, symmetric_key: str, encrypted_file: str, symmetric_key_decrypted, size: int) -> None:
