@@ -1,10 +1,10 @@
 {
-    "src_text_file": "./DECRYPTED/text_file",
-    "encrypted_file": "./ENCRYPTED/encrypted_text",
-    "decrypted_file": "./DECRYPTED/decrypted_text",
-    "symmetric_key": "./ENCRYPTED/symmetric_key",
-    "symmetric_key_decrypted": "./DECRYPTED/symmetric_key_decrypted",
-    "public_key": "./ENCRYPTED/public.pem",
-    "private_key": "./ENCRYPTED/private.pem",
-    "size": "128"
+    "src_text_file": "./DEC/text.txt",
+    "encrypted_file": "./ENC/encrypted_text.txt",
+    "decrypted_file": "./DEC/decrypted_text.txt",
+    "symmetric_key": "./ENC/symmetric_key.txt",
+    "symmetric_key_decrypted": "./DEC/symmetric_key_decrypted.txt",
+    "public_key": "./ENC/public.pem",
+    "private_key": "./ENC/private.pem",
+    "size": "192"
 }

@@ -7,45 +7,78 @@ from encryption_decryption import keys_generator, encrypt_data, decrypt_data
 
 
 def check_size(size: int):
-    """Проверка размерности для ключа"""
+    """Проверка размерности для ключа
+
+    Параметры:
+    size(int) - длина ключа для AES
+
+    Возвращаемые значения:
+    size(int) - проверенная длина ключа для AES
+    true or false - идентификатор проверки
+    """
     if size == 128 or size == 192 or size == 256:
-        return size, True
-    return 128, False
+        return int(size/8), True
+    return 16, False
 
 
-if __name__ == "__main__":
+def get_argument():
+    """Получение аргументов
 
-    logging.basicConfig(level=logging.INFO)
+    Параметры:
+    None
+
+    Возвращаемое значение:
+    args(Namespase) - считанные аргументы
+    """
     parser = argparse.ArgumentParser()
 
     mode_group = parser.add_mutually_exclusive_group(required=True)
 
     mode_group.add_argument(
-        '-gen', '--generation', action='store_true', help='Start regeneration of keys mode')
+        '-gen', '--generation', action='store_true', help='Сгенерировать ключи')
     mode_group.add_argument('-enc', '--encryption', action='store_true',
-                            help='Start encryption of data mode')
+                            help='Зашифровать данные')
     mode_group.add_argument('-dec', '--decryption', action='store_true',
-                            help='Start decryption of data mode')
-    parser.add_argument('config_file', metavar='N',
-                        type=str, help='Custom config file')
-    #args = parser.parse_args()
-    #mode = (args.generation, args.encryption, args.decryption)
-    mode = (True, False, False)
-    CONFIG = os.path.join('path.json')  # что-то надо поменять
+                            help='Расшифровать данные')
+    args = parser.parse_args()
+    return args
+
+
+def set_config_file(name: str) -> str:
+    """Читаем пути из json файла
+
+    Параметры:
+    name(str) - название конфиг-файла
+
+    Возвращаемое значение:
+    settings(str) - считанный файл
+    """
+    CONFIG = os.path.join(name)
     settings = str()
     try:
         with open(CONFIG) as json_file:
             settings = json.load(json_file)
     except FileNotFoundError:
-        logging.error(f"{CONFIG} не найден\nExit")
+        logging.error(
+            f"Ошибка открытия файла: {CONFIG} \nЗавершение работы")
         exit()
+    return settings
+
+
+if __name__ == "__main__":
+
+    logging.basicConfig(level=logging.INFO)
+    args = get_argument()
+    mode = (args.generation, args.encryption, args.decryption)
+    settings = set_config_file("path.json")
     size = int(settings["size"])
     size, correct = check_size(size)
+
     if not correct:
         logging.info(
             'Размер ключа введен некорректно -> установлен размер по умолчанию = 128.')
     else:
-        logging.info(f'Размер ключа: {size}')
+        logging.info(f'Размер ключа: {size * 8}')
 
     match mode:
         case (True, False, False):

@@ -1,0 +1,69 @@
+Cryptographic Protection of Computer Information
+
+Date: June 26, 2004, Source: Computer Crime Research Center, By: Natalya Akhtyrskaya
+
+Cryptooperation is a process of replacement and/or rearrangement of some or another symbols (bytes, bits) of an initial message using a special algorithm in accordance with the given key (a kind of a password).
+
+There are two types of cryptooperation in cryptology: symmetrical and asymmetrical. The first is sometimes called “a one-key cipher” or a cipher with a secret key. Symmetry lies in one secret key used for encryption and deciphering of one message. Symmetrical ciphers are best suited for cases when computer information is just stored on the hard disk, floppies or other mediums. One-key ciphers are very foolproof, but are rarely used when, for example, you may need to send a closed message through e-mail. The answer is that if the user protects his letter with a symmetrical cipher, then he needs to send a key by some other way. However many users regard that this way cannot absolutely guarantee total inviolability of the message in transit. Therefore another kind of cryptooperation is of special interest. Otherwise it can be named a two-key cipher or a public-key cipher. The key for deciphering differs from the key used at encryption. These ciphers use one key to encipher the message and a different key to decipher the message. This allows the enciphering key to be exposed without the code being compromised. This cipher is much slower than the symmetric cipher and so is usually used to send the key to a symmetric cipher. To prevent others from seeing the message between the two ciphers, most public key ciphers use an authentication device as well. This gives an assurance that a message has not been modified in transit or storage. Algorithms of asymmetric ciphers use mathematical function of multiplication of two numbers.
+
+There are several tens of national and international standards of encryption that are time-proved. Symmetric ciphers is DES (Data Encryption Standard), created in due time by IBM and is used in the US as a federal standard. IDEA (International Data Encryption Algorithm), RC and Russian an all-Union State Standard 28147-89 are also the most advanced symmetric ciphers. Among public-key ciphers we may note MD 20899, ISO/IEC/DIS 9594-8, X.509. An expert could probably face with these standards and thus their knowledge will help efficiently plan his investigative work.
+
+PGP (Pretty Good Privacy) is one of the most advanced programs to solve any diagnostic expert tasks produced by PGP Inc., www.pgp.com. Some versions of this software are available for different operation systems: MS DOS, MS Windows 95|98|NT|2000|XP, Macintosh and UNIX. It is a set of tools based on the most reliable from the existing algorithms of encrypting. Phil Zimmerman, American programmer has founded the beginning of encryption in the early 90s. At that time the US were about to restrict a wide use of cryptographic algorithms as they didn’t allow special services to freely read enciphered messages. In response to that, Zimmerman placed a free version of his tool on the Internet and hence this made Zimmermann the target of a three-year criminal investigation.
+
+PGP uses a mixed cryptographic system, in fact it uses both symmetric and asymmetric systems. PGP uses both of these systems because:
+
+- When you use a symmetric system (with a secret key) you have necessarily to worry about how to exchange the secret key with the recipient of message, so you could prefer an asymmetric system. (3400)
+
+- The used asymmetric system takes a lot of time to encrypt the whole message (it's about 4000 times slower than the used symmetric system).
+
+First PGP versions (up to 5.0) used the RSA algorithm (asymmetric system), and the IDEA algorithm (symmetric system). In a nutshell, in PGP the RSA algorithm encrypts a secret key which actually encrypt the bulk data. However the latest version uses two different algorithms: DSS/Diffie-Hellman and CAST (but if you are using the international version, you can choose to use RSA or DSS/Diffie-Hellman algorithms as an asymmetric system, and CAST, Triple-DES or IDEA algorithms as a symmetric system). When you use PGP you have to know 2 keys: the recipient's public key and your private key. That's all. In fact there is always a couple of keys strictly related each other: a public key and its corresponding private key. So when you encrypt a message you have to know the recipient's public key only (you know it because it's a PUBLIC key and all people knows it!). When the recipient receives your encrypted message, he decrypts it by means of his private key (this is a private key and so nobody except him knows the key!). In addition, maybe the recipient want to answer to you by sending an encrypted reply after reading your message. In this case he has to encrypt his message by means of your public key. When you receive his encrypted message, you will decrypt it by means of your private key. This is an asymmetric cryptographic system. In other words, all people knows others' public keys, but only each encrypted message's recipient knows his own private key to decrypt it.
+
+However you have to know that PGP doesn't use RSA (or DSS/Diffie-Hellman in latest versions) to encrypt your message! PGP encrypt your message by means of the IDEA algorithm (or CAST or Triple-DES in latest versions). IDEA is a symmetric system, but you have not to know a private key to encrypt the message by means of IDEA. In fact PGP creates a temporary secret key randomly just for that message you are encrypting in that moment (if you encrypt again the same message, PGP will create a new absolutely different key again). After creating the secret key, PGP encrypt the message using that key. Finally PGP encrypt the secret temporary key (used to encrypt the message) by means of RSA (using the recipient's public key) and then sends it with the encrypted key used to encrypt it. When the recipient receives the message, its copy of PGP decrypts the key by means of the recipient's private key (remember: only the recipient can decrypt that key by means of his private key) and then it uses the decrypted key to actually decrypt the message.
+
+It is necessary to note that, even using the most powerful computers, it will take centuries to decipher the message encrypted by PGP. Therefore A main expert method to access protected by these means data is a brute force.
+
+At present there are quite a few special programs to “crack”, for example such as FZC104, PCZcrack, AZPR and other freeware on the Internet. All these tools use one of two approaches at user’s choice. They either pick up a password using a huge dictionary or attack frontally (brute force) searching all possible combinations.
+
+However even simple calculations show that expert cracking of password may become an impossible operation due to its time duration. So, “brute force” (searching all possible combinations) with a speed of 200,000 combinations per second (it is approximately a PC Pentium 100 capability) for a password of six digits will be as the following: Time of searching password of 6 digits
+
+Combination of symbols Maximum time
+
+Numbers only 5.0 seconds
+
+Small letters only 25.7 minutes
+
+Symbols only 1.8 hours
+
+Small and capital letters 27.5 hours
+
+Small, capital letters, numbers 3.3 days
+
+Small, capital letters, numbers, symbols 42.5 days
+
+If the length of the password is 24 digits, then it turns to be thousands of years. Therefore, in cases when diagnostics of short passwords gives a negative result, other methods should be applied. At the same time, use of similar software to conduct expert examination with corresponding approbation, certification and its further inclusion in forensic computer examination is perfectly acceptably. Therein, it is strongly recommended to draw experts’ attention to software similar to Advanced ZIP Password Recovery that allows opening ZIP archives. Advanced ZIP Password Recovery (or simply AZPR) is a program recover (break) lost or forgotten passwords for a ZIP/PKZip/WinZip archives. Unfortunately, there is no known method to extract the password from the compressed file; so the only available methods are brute-force, dictionary-based and known-plaintext attacks. Here is a brief list of AZPR's advantages:
+
+The program has a convenient user interface
+
+The program is very fast: on 1GHz CPU, it tests about fifteen million passwords per second (or about a billion passwords per minute) -- according to independent reviewers and experts, the fastest ZIP cracker in the world!
+
+Very fast and effective known plaintext attack is available
+
+The program can work with archives containing only one encrypted file
+
+All compression methods (storing, imploding, shrinking, inflating) are supported
+
+Self-extracting archives are supported
+
+The program is customizable: you can set the password length (or length range), the character set to be used to generate the passwords, and a lot of other options
+
+You can select the custom character set for brute-force attack (non-English characters are supported)
+
+Dictionary-based attack is available
+
+The "brute-force with mask" attack is available
+
+No special virtual memory requirements
+
+You can interrupt the program at any time, and resume from the same point later
+
+The program can work in the background, using the CPU only when it is in idle state. Speed of picking up password varies from 1 through 2 million of passwords per second. When the option ‘all printed symbols may be in the password’ is selected, the speed for 5 digits is 2 hours, 6 digits – more than 7 days, 7 digits – more than a year. Maximum number of digits is 20.
